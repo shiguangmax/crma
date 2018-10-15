@@ -1,0 +1,48 @@
+<div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="搜索" ng-model="searchWord">
+    </label>
+    <button class="button button-small button-{{btnColorCSS}} submit-button" ng-click="search()">搜索</button>
+</div>
+  
+<div class="list">
+	<a class="item item-icon-right" ng-repeat="x in listInfo" ng-click="jumpInfoPage('{{x.id}}')">
+ 	   <div class="row">
+	   	<div class="col col-80" style="font-weight: bold;">
+	   		{{ x.name }}
+	   	</div>
+	   </div>
+	   <div class="row">
+	   	<div class="col col-20">
+	   		标签：
+	   	</div>
+	   	<div class="col">
+	   		{{ x.progressState }}
+	   	</div>
+	   	<div class="col col-20">
+	   		分类：
+	   	</div>
+	   	<div class="col">
+	   		{{ x.level }}
+	   	</div>
+	   </div>
+	   <div class="row">
+	   	<div class="col col-25">
+	   		联系人：
+	   	</div>
+	   	<div class="col">
+	   		孙小三
+	   	</div>
+	   	<div class="col">
+	   		跟进人员：孙小三
+	   	</div>
+	   </div>
+	   <div class="row">
+	   	<div class="col">
+	   		更新时间：{{ x.createName }}
+	   	</div>
+	   </div>
+	   <i class="icon ion-ios-arrow-right"></i> 
+	  </a>
+</div>

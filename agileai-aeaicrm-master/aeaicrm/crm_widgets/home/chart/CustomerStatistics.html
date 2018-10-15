@@ -1,0 +1,14 @@
+<div class="card aeai-card">
+	<div class="item aeai-card-header item-icon-right" >
+	  <img src="/map/images/demo/maplogo.png" class="card-title-icon">
+	  <!-- <span class="item-icon-left"><i class="icon ion-document-text positive"></i></span> -->
+	  <span>客户统计</span>
+	  <i class="icon ion-android-more-vertical" ng-click="showActionSheet('${widgetCode}')"></i>
+	</div>
+    <div class="item item-text-wrap">
+		<canvas id="bar" class="chart chart-bar" chart-click="click" chart-colors="colours" chart-data="data" chart-labels="labels"> chart-series="series"</canvas>  
+		<span style="display:block;text-align:center;">
+	        <span style="color:#1D7BD0;">商机数</span><span style="color:#FB4443;margin-left:25px;">订单数</span>
+        </span>
+    </div>
+</div>

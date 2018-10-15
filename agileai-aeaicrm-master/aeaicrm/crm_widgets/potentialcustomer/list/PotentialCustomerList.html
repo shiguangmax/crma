@@ -1,0 +1,67 @@
+<div class="list">
+  <div class="item tabs tabs-secondary" style="width: 101%;height: 38px;">
+  	  <label class="item tab-item item-select my-customers-select-border" style="padding: 0px;">
+            <select ng-init="state=''" ng-model="state" data-tap-disabled="true" ng-change="changeSelect()" style="right: 30px;padding: 0px;">
+              <option value="" >状态</option>
+              <option value="0">有效</option>
+              <option value="1">无效</option>
+            </select>
+        </label>
+  	  <label class="item tab-item item-select my-customers-select-border" style="padding: 0px;">
+  	  		<select ng-init="state=''" ng-model="classificat" data-tap-disabled="true" ng-change="changeSelect()" style="right: 30px;padding: 0 0 0 0;">
+	             <option value="">分类</option>
+	             <option value="ENTERPRISE_ENTITY">企业实体</option>
+	             <option value="SOFTWARE_DEVELOPERS">软件开发商</option>
+	             <option value="SOFTWARE_AGENTS">软件代理商</option>
+	             <option value="SYSTEM_INTEGRATOR">系统集成商</option>
+	             <option value="UNKNOWN">未知</option>
+	       </select>
+  	  </label>
+  	  <label class="item tab-item item-select my-customers-select-border" style="padding: 0px;">
+  	  		<select ng-model="label" data-tap-disabled="true" ng-change="changeSelect()" style="right: 30px;padding: 0 0 0 0;">
+	             <option value="">标签</option>
+	             <option value="1">无人接听</option>
+	             <option value="2">号码信息不符</option>
+	             <option value="3">空号</option>
+	             <option value="4">暂停服务</option> 
+	             <option value="5">暂无需求</option> 
+	             <option value="6">后续联系</option> 
+	             <option value="7">态度恶劣</option> 
+	       </select>
+  	  </label>
+  </div>
+  <div ng-show="listInfo.length==0" style="margin-top: 200px;text-align: center;" >无记录</div>
+    <a class="item item-note item-icon-right" style="float: none;" ng-repeat="x in listInfo" href="" ng-click="jumpInfoPage('{{x.id}}')">
+     <div class="row">
+     	<div class="col col-75" style="font-weight: bold;">
+     		{{ x.name }}
+     	</div>
+     	<div class="col" style="border-radius: 20px;">
+     		<span ng-show="x.state=='无效'" style="border-radius: 10px;text-align:center;padding: 0px 10px;color: #fff;" class="col-demo" ng-class="{'assertive-bg': x.state=='无效'}">无效</span>
+     		<span ng-show="x.state=='有效'" style="border-radius: 10px;text-align:center;padding: 0px 10px;color: #fff;" class="col-demo" ng-class="{'balanced-bg': x.state=='有效',}">有效</span>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col">
+     		标签：{{ x.labels }}
+     	</div>
+     	<div class="col">
+     		分类：{{ x.classification }}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col">
+     		联系人：{{x.linkmanName}}
+     	</div>
+     	<div class="col">
+     		跟进人员：{{x.orgSalesmanName}}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col">
+     		更新时间：{{ x.updateTime }}
+     	</div>
+     </div>
+     <i class="icon ion-ios-arrow-right"></i>
+    </a>
+</div>

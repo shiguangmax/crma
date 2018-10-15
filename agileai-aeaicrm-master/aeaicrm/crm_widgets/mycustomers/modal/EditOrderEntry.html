@@ -1,0 +1,65 @@
+<ion-modal-view ng-controller="${widgetCode}Ctrl">
+  <ion-header-bar class="bar bar-header bar-{{userPreferColorCSS}}">
+	 <button ng-click="closeModal()" class="button back-button buttons button-clear header-item">
+		<i class="icon ion-android-arrow-back"></i> 
+     </button>   
+     <h1 class="title">修改产品信息</h1>
+  	 <button class="button button-{{btnColorCSS}}" ng-click="update()">保存</button>
+  </ion-header-bar>
+<ion-content>
+<div class="content padding-top">
+  <div class="list" style="margin-top:-10px;">
+     <div class="row item">
+	   	<div class="col col-33">
+	   		预定产品：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderEntryInfo.entryOrderProduct" style="width:100%">
+	   	</div>
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		产品型号：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderEntryInfo.entryProductModel" style="width:100%">
+	   	</div>
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		产品数量：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="number" ng-model="orderEntryInfo.entryNumber">
+	   	</div>
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		产品单价：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderEntryInfo.entryUnitPrice" style="width:100%">
+	   	</div>
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		产品折扣：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderEntryInfo.entryDiscount" style="width:100%" id="discount" ng-blur="entryDiscount()">
+	   	</div>
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		实际价格：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderEntryInfo.entryRealPrice" style="width:100%">
+	   	</div>
+	</div>
+	<input type="hidden" ng-model="orderEntryInfo.entryId">
+	<input type="hidden" ng-model="orderEntryInfo.orderId">
+   </div>
+</div>
+</ion-content>
+</ion-modal-view>

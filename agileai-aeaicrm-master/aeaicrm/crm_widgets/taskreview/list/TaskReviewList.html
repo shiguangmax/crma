@@ -1,0 +1,223 @@
+<div class="item" style="text-align: center;">
+   	周期定义：{{tcBegin}}至{{tcEnd}}
+</div>
+<div class="bar-subheader tabs tabs-striped tabs-top tab-assertive tabs-color" ng-init="initTabs(['StrangeVisit','IntentionFollowUp','WorkSummary'])">
+	<a class="tab-item" ng-class="{active:activeTab=='StrangeVisit'}" ng-click="setActiveTab('StrangeVisit')" href="">陌生拜访</a>
+	<a class="tab-item" ng-class="{active:activeTab=='IntentionFollowUp'}" ng-click="setActiveTab('IntentionFollowUp')" href="">意向跟进</a>
+	<a class="tab-item" ng-class="{active:activeTab=='WorkSummary'}" ng-click="setActiveTab('WorkSummary')" href="">工作总结</a>
+</div>
+
+<!-- StrangeVisit -->
+<div class="content" ng-show="activeTab=='StrangeVisit'" style="margin-top: 38px;">
+	<div ui-view="StrangeVisit" class="">
+		<div ng-style="fullHeight" class="list" style="min-height: 478px; background-color: rgb(255, 255, 255);">
+		  	<a class="item item-note item-icon-right" style="float: none;" ng-repeat="x in StrangeVisitList" href="" ng-click="jumpStrangeVisitInfoPage('{{x.taskId}}','{{x.orgId}}')">
+		     <div class="row">
+		     	<div class="col col-75" style="font-weight: bold;font-size: 16px;">
+		     		{{ x.name }}
+		     	</div>
+		     	<div class="col" style="border-radius: 20px;">
+		     		<span ng-show="x.state=='无效'" style="border-radius: 10px;text-align:center;padding: 0px 10px;color: #fff;" class="col-demo" ng-class="{'assertive-bg': x.state=='无效'}">无效</span>
+		     		<span ng-show="x.state=='有效'" style="border-radius: 10px;text-align:center;padding: 0px 10px;color: #fff;" class="col-demo" ng-class="{'balanced-bg': x.state=='有效',}">有效</span>
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		标签：{{ x.labels }}
+		     	</div>
+		     	<div class="col">
+		     		分类：{{ x.classification }}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		创建人：{{x.orgCreaterName}}
+		     	</div>
+		     	<div class="col">
+		     		跟进状态：{{x.followState}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		创建时间：{{ x.updateTime }}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		更新时间：{{ x.updateTime }}
+		     	</div>
+		     </div>
+		     <i class="icon ion-ios-arrow-right"></i>
+		    </a>         
+		</div>
+	</div>
+</div>
+	
+<!-- IntentionFollowUp -->	
+<div class="content ng-hide" ng-show="activeTab=='IntentionFollowUp'" style="margin-top: 38px;">
+	<div ui-view="IntentionFollowUp" class="">
+		<div ng-style="fullHeight" class="list" style="min-height: 478px; background-color: rgb(255, 255, 255);">
+	    	<a class="item item-text-wrap item-note item-icon-right" ng-repeat="x in intentFollowupList" href="" style="float: none;" ng-click="jumpIntentFollowupInfoPage('{{x.taskId}}','{{x.custId}}')">
+			     <div class="row">
+			     	<div class="col col-50" style="font-weight: bold;font-size: 16px;">
+			     		{{ x.custName }}
+			     	</div>
+			     	<div class="col" style="padding-top: 7px;">
+			     		{{x.custScale}}
+			     	</div>
+			     </div>
+			     <div class="row">
+			     	<div class="col">
+			     		行业：{{x.custIndustry}}
+			     	</div>
+			     	<div class="col">
+			     		性质：{{x.custNature}}
+			     	</div>
+			     </div>
+			     <div class="row">
+			     	<div class="col">
+			     		状态：{{ x.custState }}
+			     	</div>
+			     	<div class="col">
+			     		跟进状态：{{ x.followState }}
+			     	</div>
+			     </div>
+		     	<i class="icon ion-ios-arrow-right"></i>
+		    </a>
+	    
+		</div>
+	</div>
+</div>
+	
+<!-- WorkSummary -->	
+<div class="content ng-hide" ng-show="activeTab=='WorkSummary'" style="margin-top: 38px;">
+	<div ui-view="WorkSummary" class="">
+		<div ng-style="fullHeight" class="list" style="min-height: 478px; background-color: rgb(255, 255, 255);">
+		  	
+		  	<div class="row">
+		     	<div class="col">
+		     		商机数：{{workSummary.oppNum}}
+		     	</div>
+		     	<div class="col">
+		     		订单数：{{workSummary.orderNum}}
+		     	</div>
+		     	<div class="col light calm-bg"style="border-radius: 20px;font-weight: bold;text-align:center;">
+		     		{{workSummary.taskReviewState}}<!-- <span ng-show="x.state=='无效'" style="border-radius: 10px;text-align:center;padding: 0px 10px;color: #fff;" class="col-demo" ng-class="{'assertive-bg': x.state=='无效'}">确认计划</span> -->
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		新增潜在客户：{{workSummary.proNum}}
+		     	</div>
+		     	<div class="col">
+		     		新增客户记录：{{workSummary.custNum}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col stable-bg">
+		     		陌生拜访
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col"><!-- taskReviewStrangeTask taskReviewStrangeFollow taskReviewStrangeVisit -->
+		     		任务记录：{{workSummary.taskReviewStrangeTask}}&nbsp;跟进：{{workSummary.taskReviewStrangeFollow}}&nbsp;拜访记录：{{workSummary.taskReviewStrangeVisit}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col stable-bg">
+		     		意向跟进
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col"><!-- taskReviewIntentionTask taskReviewIntentionFollow taskReviewIntentionVisit -->
+		     		任务记录：{{workSummary.taskReviewIntentionTask}}&nbsp;跟进：{{workSummary.taskReviewIntentionFollow}}&nbsp;拜访记录：{{workSummary.taskReviewIntentionVisit}}
+		     	</div>
+		     </div>
+		     
+		     <div class="item item-divider">
+				商机
+			 </div>
+			 <div class="list" ng-repeat="opp in workSummary.oppRecords">
+			 	<div class="row">
+		     	<div class="col">
+		     		商机名称：{{opp.oppName}}
+		     	</div>
+		     	<div class="col">
+		     		客户名称：{{opp.custIdName}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		联系人名称：{{opp.contIdName}}
+		     	</div>
+		     	<div class="col">
+		     		关注产品：{{opp.oppConcernProduct}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		跟进人员：{{opp.clueSalesmanName}}
+		     	</div>
+		     	<div class="col">
+		     		创建人：{{opp.oppCreaterName}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		创建时间：{{opp.oppCreateTime}}
+		     	</div>
+		     </div>
+			 </div>
+			 
+			 <div class="item item-divider">
+				订单
+			 </div>
+			 <div class="list" ng-repeat="order in workSummary.orderRecords">
+			 	<div class="row">
+			     	<div class="col">
+			     		订单名称：{{order.oppName}}
+			     	</div>
+			     	<div class="col">
+			     		客户名称：{{order.custIdName}}
+			     	</div>
+			     </div>
+			     <div class="row">
+			     	<div class="col">
+			     		负责人：{{order.orderChief}}
+			     	</div>
+			     	<div class="col">
+			     		订单费用：{{order.orderCost}}
+			     	</div>
+			     </div>
+			     <div class="row">
+			     	<div class="col">
+			     		跟进人员：{{order.clueSalesmanName}}
+			     	</div>
+			     	<div class="col">
+			     		创建人：{{order.oppCreaterName}}
+			     	</div>
+			     </div>
+			     <div class="row">
+			     	<div class="col">
+			     		创建时间：{{order.orderCreateTime}}
+			     	</div>
+			     </div>
+			 </div>
+		  	 <div ng-click="jumpUpdateWorkSummaryPage()">
+			     <div class="item item-divider">
+					工作总结
+				 </div>
+				 <div class="row">
+			     	<div class="col">
+			     		<p ng-bind-html="workSummary.taskReviewDesc | to_trusted" class="dailymanage ng-binding"></p>
+			     	</div>
+			     </div>
+			 </div> 
+			       
+		</div>
+	</div>
+</div>
+
+
+
+

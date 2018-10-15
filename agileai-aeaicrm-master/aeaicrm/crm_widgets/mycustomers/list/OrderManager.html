@@ -1,0 +1,47 @@
+<div class="margin-top: 200px;text-align: center;" style="background-color:#fff;">
+</div>
+<ion-list>
+	  <ion-item ng-repeat="x in orderList" 
+	            item="x"
+	            ng-click="openModal('{{x.id}}','orderDetails')"
+	            class="item-remove-animate" >
+	 <div class="row">
+     	<div class="col col-75">
+     		商机名称：{{ x.name }}
+     	</div>
+     	<div class="col col-33"  style="color:red;">
+     		{{ x.orderState }}
+     	</div>
+     </div>
+	 <div class="row">
+     	<div class="col col-67">
+     		负责人：{{ x.chief }}
+     	</div>
+     	<div class="col col-50">
+     		跟进人：{{ x.salesmanName }}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33">
+     		创建时间：
+     	</div>
+     	<div class="col">
+     		{{x.datetime}}
+     	</div>
+     </div>
+     	<ion-option-button class="button-energized"
+	                       ng-click="openModal('{{x.id}}','orderDetails')">
+	     	 查看
+	    </ion-option-button>
+	    <ion-option-button class="button-calm"
+	                       ng-click="openModal('{{x.id}}','editOrder')"
+	                       ng-show="{{x.recordState}}">
+	     	 编辑
+	    </ion-option-button>
+	    <ion-option-button class="button-assertive"
+	                       ng-click="deleteOrder('{{x.id}}')"
+	                       ng-show="{{x.recordState}}">
+	      	删除
+	    </ion-option-button>
+	  </ion-item>
+</ion-list>

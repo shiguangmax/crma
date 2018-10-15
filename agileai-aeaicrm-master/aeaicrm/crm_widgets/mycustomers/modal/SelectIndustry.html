@@ -1,0 +1,18 @@
+<ion-modal-view ng-controller="${widgetCode}Ctrl">
+  <ion-header-bar class="bar bar-header bar-{{userPreferColorCSS}}">
+	 <button ng-click="closeModal()" class="button back-button buttons button-clear header-item">
+		<i class="icon ion-android-arrow-back"></i> 
+     </button>   
+     <h1 class="title">选择行业</h1>
+  	 <button class="button button-{{btnColorCSS}}" ng-click="doSelectIndustry();closeModal();">保存</button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+        <ion-radio ng-repeat="x in industry"
+                   ng-value="x.value"
+                   ng-click="setIndustryId('{{x.id}}','{{x.value}}')">
+          {{ x.value }}
+        </ion-radio>      
+	</div>
+  </ion-content>
+</ion-modal-view>

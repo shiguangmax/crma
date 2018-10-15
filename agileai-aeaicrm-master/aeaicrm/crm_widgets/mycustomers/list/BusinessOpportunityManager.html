@@ -1,0 +1,62 @@
+<div class="margin-top: 200px;text-align: center;" style="background-color:#fff;">
+<ion-list>
+	  <ion-item ng-repeat="x in oppList" 
+	            item="x"
+	            ng-click="openModal('{{x.id}}','{{x.saleMan}}','oppDetails')"
+	            class="item-remove-animate" >
+     <div class="row">
+     	<div class="col col-33">
+     		商机名称：
+     	</div>
+     	<div class="col col-33">
+     		{{ x.name }}
+     	</div>
+     	<div class="col" style="color:red;">
+     		{{x.oppState}}
+     	</div>
+     </div>
+     <!-- <div class="row">
+     	<div class="col col-33">
+     		关注产品：
+     	</div>
+     	<div class="col col-33">
+     		{{ x.concernProduct }}
+     	</div>
+     	<div class="col">
+     		级别：
+     	</div>
+     	<div class="col">
+     		{{ x.level }}
+     	</div>
+     </div> -->
+     <div class="row">
+     	<div class="col col-33">
+     		创建时间：
+     	</div>
+     	<div class="col">
+     		{{ x.datetime }}
+     	</div>&#12288;
+     </div>
+     	<ion-option-button class="button-energized"
+	                       ng-click="openModal('{{x.id}}','{{x.saleMan}}','oppDetails')"
+	                       ng-show="{{x.recordState}}">
+	     	 查看
+	    </ion-option-button>
+	    <ion-option-button class="button-calm"
+	                       ng-click="openModal('{{x.id}}','{{x.saleMan}}','editOpp')"
+	                       ng-show="{{x.recordState}}">
+	     	 编辑
+	    </ion-option-button>
+	    <ion-option-button class="button-assertive"
+	                       ng-click="deleteOpp('{{x.id}}')"
+	                       ng-show="{{x.recordState}}">
+	      	删除
+	    </ion-option-button>
+	    <ion-option-button class="button-energized"
+	                       ng-click="openModal('{{x.id}}','{{x.saleMan}}','creatOrder')"
+	                       ng-show="{{x.submitState}}">
+	     	 生成订单
+	    </ion-option-button>
+	  </ion-item>
+</ion-list>
+

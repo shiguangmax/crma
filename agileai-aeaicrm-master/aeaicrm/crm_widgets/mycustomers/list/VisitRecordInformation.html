@@ -1,0 +1,92 @@
+<div class="content" style="background-color: #fff;">
+   <div class="list">
+  <div class="content background-color-white">
+	<div class="row item">
+     	<div class="col col-33">
+     		拜访类型：
+     	</div>
+     	<div class="col col-66">
+			<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="visitInfo.type" disabled="disabled">
+		        <option value="0">预约拜访</option>
+		        <option value="1">电话拜访</option>
+		        <option value="2">邮件拜访</option>
+		        <option value="3">陌生拜访</option>
+			</select>
+     	</div>
+     </div>
+     <div class="row item">
+     	<div class="col col-33">
+     		沟通效果：
+     	</div>
+     	<div class="col col-66">
+			<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="visitInfo.effect" disabled="disabled">
+		        <option value="Follow_up">可跟进</option>
+		        <option value="Have_intention">有意向</option>
+		        <option value="Unwanted">不需要</option>
+			</select>
+     	</div>
+     </div>
+     <div class="row item">
+     	<div class="col col-33">
+     		拜访日期：
+     	</div>
+     	<div class="col col-66">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+			   <input type="date" ng-model="visitInfo.visitDate" style="border:0px;" readonly>
+			</label>
+     	</div>
+     </div>
+     <div class="row item">
+     	<div class="col col-33">
+     		当前状态：
+     	</div>&#12288;
+     	<div class="col col-66">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+			   <input type="text" ng-model="visitInfo.visitState" style="border:0px;color:red;" readonly>
+			</label>
+     	</div>
+     </div>
+     <div class="row item">
+     	<div class="col col-33">
+     		接待人姓名：
+     	</div>&#12288;
+     	<div class="col col-66">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+			   <input type="text" ng-model="visitInfo.receptionName" style="border:0px;" readonly>
+			</label>
+     	</div>
+     </div>
+     <div class="row item">
+     	<div class="col col-33">
+     		接待人性别：
+     	</div>
+     	<div class="col col-66">
+     		<select style="border:0px;width: 75%;max-width: 81%;padding-left: 25px;direction: ltr;" ng-model="visitInfo.receptionSex" disabled="disabled">
+		        <option value="M">男</option>
+		        <option value="F">女</option>
+			</select>
+     	</div>
+     </div>
+     <div class="row item">
+     	<div class="col col-33">
+     		接待人职位：
+     	</div>
+     	<div class="col col-66">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+			   <input type="text" ng-model="visitInfo.receptionJob" style="border:0px;padding-left:13px;" readonly>
+			</label>
+     	</div>
+     </div>
+     <div class="row item">
+     	<div class="col col-33">
+     		接待人电话：
+     	</div>
+     	<div class="col col-66">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+			   <input type="text" ng-model="visitInfo.receptionPhone" style="border:0px;padding-left:13px;" readonly>
+			</label>
+     	</div>
+     </div>
+   </div>
+  </div>
+</div>

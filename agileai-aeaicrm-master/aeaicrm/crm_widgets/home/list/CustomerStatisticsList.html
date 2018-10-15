@@ -1,0 +1,38 @@
+<div class="tabs tabs-striped tabs-top tabs-color aeai-tabs clear-top" style="top: 0px;">
+	<span>
+		<a ng-show="showLeftionic==true">
+			<img class="weekexam-imgs margin-top" ng-src="../../../repository/widgets/crm_widgets/home/image/toleft.png" ng-click="onSwipeRight()">
+		</a>
+	</span>
+	<a ng-repeat="x in userInfos" class="tab-item"
+	ng-click="changeClass('{{x.userCode}}','{{x.userId}}');setActiveTab('{{x.userCode}}');setActiveUserId('{{x.userId}}');"
+	ng-class="{'{{x.userCode}}':'active'}[activeUserCode]"
+	ng-show="showPolicy($index)">
+	{{x.userName}}
+      </a>
+      <span>
+		<a ng-show="showRightionic==true">
+			<img class="weekexam-imgs margin-top" ng-src="../../../repository/widgets/crm_widgets/home/image/toright.png" ng-click="onSwipeLeft()">
+		</a>
+	</span>
+</div>
+
+<div>
+	<a class="item item-note item-icon-right" style="float: none;" ng-repeat="x in saleCustomerList" href="" ng-click="jumpMyCustomersInfoPage('{{x.custId}}')">
+	     <div class="row">
+	     	<div class="col col-75" style="font-weight: bold;font-size: 16px;">
+	     		{{ x.custName }}
+	     	</div>
+	     </div>
+	     <div class="row">
+	     	<div class="col">
+	     		商机数：{{ x.oppNum }}
+	     	</div>
+	     	<div class="col">
+	     		订单数：{{ x.orderNum }}
+	     	</div>
+	     </div>
+	     
+	     <i class="icon ion-ios-arrow-right"></i>
+	 </a>  
+</div>

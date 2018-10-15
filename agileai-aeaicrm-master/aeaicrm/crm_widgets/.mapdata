@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MapConfigs>
+  <ServerConfig>
+    <ConfigAlias>default</ConfigAlias>
+    <ServerAddress>localhost</ServerAddress>
+    <ServerPort>5050</ServerPort>
+    <ServerUserId>admin</ServerUserId>
+    <ServerUserPwd>K6CG7IXQGv4=</ServerUserPwd>
+  </ServerConfig>
+  <ServerList>
+    <ServerConfig>
+      <ServerAlias>default</ServerAlias>
+      <ServerAddress>localhost</ServerAddress>
+      <ServerPort>5050</ServerPort>
+      <ServerUserId>admin</ServerUserId>
+      <ServerUserPwd>K6CG7IXQGv4=</ServerUserPwd>
+    </ServerConfig>
+  </ServerList>
+</MapConfigs>

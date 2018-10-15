@@ -1,0 +1,45 @@
+<ion-modal-view ng-controller="${widgetCode}Ctrl">
+  <ion-header-bar class="bar bar-header bar-{{userPreferColorCSS}}">
+	 <button ng-click="closeModal()" class="button back-button buttons button-clear header-item">
+		<i class="icon ion-android-arrow-back"></i> 
+     </button>   
+     <h1 class="title">生成订单</h1>
+  	 <button class="button button-{{btnColorCSS}}" ng-click="creatOrderSave()" ng-disabled="!isValidSaveInfo()">保存</button>
+  </ion-header-bar>
+  <ion-content>
+    <div style="background-color:#fff" class="list">
+	<div class="row item">
+	   	<div class="col col-33">
+	   		负责人：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.chief" style="width:100%">
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		交付费用：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.deliveryCost" style="width:100%">
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		订单费用：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.orderCost" style="width:100%">
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+	   	<div class="col col-33" style="margin-top:2px;">
+	   		订单状态：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" placeholder="初始化" style="width:100%;border:0px" readonly>
+	   	</div>&#12288;
+	</div>
+</div>
+</ion-content>
+</ion-modal-view>

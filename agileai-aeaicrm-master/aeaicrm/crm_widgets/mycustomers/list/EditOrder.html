@@ -1,0 +1,132 @@
+<div class="item item-divider" style="text-align:center;margin-top: -1px;background-color:#0099ff;color:#fff;">
+		基础信息
+</div>
+<div style="background-color:#fff" class="list">
+	<div class="row item">
+	   	<div class="col col-33">
+	   		名称：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.name" style="width:100%" readonly>
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		创建者：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.orderCreaterName" style="width:100%" readonly>
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		跟进人：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.salesmanName" style="width:100%" readonly>
+	   	</div>&#12288;
+	</div>
+	<div class="row item" style="background-color:#EEEEEE">
+	   	<div class="col col-33">
+	   		负责人：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.chief" style="width:100%;background-color:#EEEEEE">
+	   	</div>
+	</div>
+	<div class="row item" style="background-color:#EEEEEE">
+	   	<div class="col col-33">
+	   		交付费用：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.deliveryCost" style="width:100%;background-color:#EEEEEE">
+	   	</div>
+	</div>
+	<div class="row item" style="background-color:#EEEEEE">
+	   	<div class="col col-33">
+	   		订单费用：
+	   	</div>
+	   	<div class="col-66">
+	   		<input type="text" ng-model="orderInfo.orderCost" style="width:100%;background-color:#EEEEEE">
+	   	</div>
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		订单状态：
+	   	</div>
+	   	<div class="col col-66">
+	   		<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="orderInfo.state" data-tap-disabled="true" disabled="disabled">
+		        <option value="0">初始化</option>
+		        <option value="1">提交</option>
+		        <option value="2">已确认</option>
+			</select>
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		创建时间：
+	   	</div>
+	   	<div class="col col-66">
+	   		<input type="text" ng-model="orderInfo.orderCreateTime" style="width:100%" readonly>
+	   	</div>&#12288;
+	</div>
+</div>
+
+<div class="item item-divider" style="text-align:center;background-color:#0099ff;margin-top: -32px;color:#fff;">
+		产品清单
+</div>
+<div class="list">
+<ion-list>
+ <ion-item ng-repeat="x in orderInfo.entryDatas" 
+           item="x"
+           ng-click="openModal('{{x.entryId}}','showDetails')"
+           class="item-remove-animate" >
+			<div class="row">
+			   	<div class="col col-33">
+			   		预定产品：
+			   	</div>
+			   	<div class="col col-66">
+			   		{{x.entryOrderProduct}}
+			   	</div>&#12288;
+			</div>
+			<div class="row">
+			   	<div class="col col-33">
+     				数量：
+		     	</div>
+		     	<div class="col col-33">
+		     		{{ x.entryNumber }}
+		     	</div>
+		     	<div class="col">
+		     		单价：
+		     	</div>
+		     	<div class="col">
+		     		{{ x.entryUnitPrice }}
+		     	</div>
+			</div>
+			<div class="row">
+			   	<div class="col col-33">
+     				折扣：
+		     	</div>
+		     	<div class="col col-33">
+		     		{{ x.entryDiscount }}
+		     	</div>
+		     	<div class="col">
+		     		实价：
+		     	</div>
+		     	<div class="col">
+		     		{{ x.entryRealPrice }}
+		     	</div>
+			</div>
+	    <ion-option-button class="button-calm"
+	                       ng-click="openModal('{{x.entryId}}','editEntry')">
+	     	 编辑
+	    </ion-option-button>
+		<ion-option-button class="button-assertive"
+	                       ng-click="deleteOrderEntry('{{x.entryId}}')">
+	      	删除
+	    </ion-option-button> 
+	  </ion-item>
+</ion-list>
+</div>
+<input type="hidden" ng-model="orderInfo.salesman" style="width:100%">
+<input type="hidden" ng-model="orderInfo.orderCreater" style="width:100%">

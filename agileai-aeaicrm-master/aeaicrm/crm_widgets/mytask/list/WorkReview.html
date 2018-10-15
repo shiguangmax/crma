@@ -1,0 +1,11 @@
+<div class="list">
+	<div class="item light calm-bg">
+	<i class="icon ion-android-time"></i> 周期定义
+</div>
+<div class="content background-color-white">
+	<ion-radio ng-repeat="x in cycleList" ng-click="changeTaskReviewId('{{x.taskReviewId}}','{{x.tcPeriod}}')">
+		{{x.tcPeriod}}
+		<input type="hidden" value="{{x.taskReviewId}}">
+	</ion-radio>
+</div>
+</div>

@@ -1,0 +1,72 @@
+<ion-modal-view ng-controller="${widgetCode}Ctrl">
+  <ion-header-bar class="bar bar-header bar-{{userPreferColorCSS}}">
+	 <button ng-click="closeModal()" class="button back-button buttons button-clear header-item">
+		<i class="icon ion-android-arrow-back"></i> 返回
+     </button>   
+     <h1 class="title">拜访记录</h1>
+  </ion-header-bar>
+  <ion-content>
+		 <div class="content background-color-white">
+		 	<div class="row">
+		     	<div class="col">
+		     		拜访日期
+		     	</div>
+		     	<div class="col col-67">
+		     		{{ visitingInfo.date}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		拜访类型
+		     	</div>
+		     	<div class="col col-67">
+		     		{{ visitingInfo.type}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		拜访效果
+		     	</div>
+		     	<div class="col col-67">
+		     		{{ visitingInfo.effect}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		填写人
+		     	</div>
+		     	<div class="col col-67">
+		     		{{ visitingInfo.fillName}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		填写时间
+		     	</div>
+		     	<div class="col col-67">
+		     		{{ visitingInfo.fillTime}}
+		     	</div>
+		     </div>
+		     <div class="row">
+				<div class="col">
+		     		拜访备注
+		     	</div>
+			</div>
+			<div class="row">
+				<div class="col">
+		     		{{ visitingInfo.remark}}
+		     	</div>
+			</div>
+			<div class="row">
+				<div class="col">
+		     		客户关注点
+		     	</div>
+			</div>
+			<div class="row col-67">
+				<div class="col">
+		     		{{ visitingInfo.custFocus}}
+		     	</div>
+			</div>
+		</div>
+  </ion-content>
+</ion-modal-view>

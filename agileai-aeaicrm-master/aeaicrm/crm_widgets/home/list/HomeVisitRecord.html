@@ -1,0 +1,35 @@
+<div class="margin-top: 200px;text-align: center;" style="background-color:#fff;">
+</div>
+<ion-list>
+	  <ion-item ng-repeat="x in listInfo" 
+	            item="x"
+	            ng-click="openModal('{{x.id}}','showDetails')"
+	            class="item-remove-animate" style="margin-left:-16px;">
+     <div class="row">
+     	<div class="col col-66">
+     		拜访人员：{{ x.name }}
+     	</div>
+     	<div class="col col-50" style="color:red;">
+     		{{x.visitState}}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-66">
+     		拜访类型：{{ x.visitType }}
+     	</div>
+     	<div class="col col-50">
+     		沟通效果：{{x.effect}}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-66">
+     		拜访时间：{{ x.date }}
+     	</div>
+     </div>
+     	<ion-option-button class="button-energized"
+	                       ng-click="openModal('{{x.id}}','showDetails')"
+	                       ng-show="{{x.recordState}}">
+	     	 查看
+	    </ion-option-button>
+	  </ion-item>
+</ion-list>

@@ -1,0 +1,53 @@
+<div class="list">
+		<label class="item item-input">
+          	拜访日期
+         <input class="input-size" type="date" ng-model="suspendInfo.procustVisitDate" align="right" >
+        </label>
+        
+        <label class="item item-input item-select">
+          <div class="input-label" style="width:auto;">拜访类型</div>
+            <select class="aeai-select-item" ng-model="suspendInfo.procustVisitType" data-tap-disabled="true">
+              	 <option value="">请选择</option>
+              	 <option value="0">预约拜访</option>
+	             <option value="1">电话拜访</option>
+	             <option value="2">邮件拜访</option>
+	             <option value="3">陌生拜访</option>
+            </select>
+        </label>
+        
+        <label class="item item-input item-select">
+          <div class="input-label" style="width:auto;">拜访效果</div>
+            <select class="aeai-select-item" ng-model="suspendInfo.procustVisitEffect" data-tap-disabled="true">
+              	 <option value="">请选择</option>
+              	 <option value="Have_intention">有意向</option>
+	             <option value="Unwanted">不需要</option>
+	             <option value="Follow_up">可跟进</option>
+            </select>
+        </label> 
+        
+        <label class="item item-input">
+          	填写人
+         <input class="input-size" type="text" ng-model="suspendInfo.procustVisitFillName" align="right" >
+         <input type="hidden" ng-model="suspendInfo.procustVisitFillId">
+        </label>
+        
+        <label class="item item-input">
+          	填写时间
+         <input class="input-size" type="text" ng-model="suspendInfo.procustVisitFillTime" align="right" >
+        </label>
+        
+        <label class="item" style="line-height: 15px;">
+			拜访备注
+	    </label>
+        <label class="item item-input">
+		    <textarea rows="8" cols="50" ng-model="suspendInfo.procustVisitRemark" placeholder="输入描述内容..."></textarea>
+        </label>
+        
+        <label class="item" style="line-height: 15px;">
+			客户关注点
+	    </label>
+        <label class="item item-input">
+		    <textarea rows="8" cols="50" ng-model="suspendInfo.procustVisitCustFocus" placeholder="输入描述内容..."></textarea>
+        </label>
+        
+   </div>

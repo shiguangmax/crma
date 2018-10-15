@@ -1,0 +1,160 @@
+<div class="list">
+		<div class="item item-divider">
+			基本信息
+		</div>
+	
+		<label class="item item-input">
+          	客户名称
+         <input class="input-size" type="text" ng-model="customerInfo.orgName" align="right" disabled="disabled">
+         <input type="hidden" ng-model="customerInfo.orgId" >
+        </label>
+        
+        <label class="item item-input item-select">
+          <div class="input-label" style="width:auto;">分类</div>
+            <select class="aeai-select-item" ng-model="customerInfo.orgClassification" data-tap-disabled="true" disabled="disabled">
+              	 <option value="">请选择</option>
+              	  <option value="ENTERPRISE_ENTITY">企业实体</option>
+	             <option value="SOFTWARE_DEVELOPERS">软件开发商</option>
+	             <option value="SOFTWARE_AGENTS">软件代理商</option>
+	             <option value="SYSTEM_INTEGRATOR">系统集成商</option>
+	             <option value="UNKNOWN">未知</option>
+            </select>
+        </label>
+        
+        <label class="item item-input item-select">
+          <div class="input-label" style="width:auto;">客户性质</div>
+            <select class="aeai-select-item" ng-model="customerInfo.orgType" data-tap-disabled="true" disabled="disabled">
+              	 <option value="selected">请选择</option>
+              	 <option value="0">未知</option>
+	             <option value="1">外资(欧美)</option>
+	             <option value="2">外资(非欧美)</option>
+	             <option value="3">合资</option>
+	             <option value="4">国企</option>
+	             <option value="5">民营公司</option>
+	             <option value="6">国内上市公司</option>
+	             <option value="7">外企代表处</option>
+	             <option value="8">政府机关</option>
+	             <option value="9">事业单位</option>
+	             <option value="10">非营利机构</option>
+	             <option value="11">其他性质</option>
+            </select>
+        </label>
+        
+        <label class="item item-input item-select">
+          <div class="input-label" style="width:auto;">来源渠道</div>
+            <select class="aeai-select-item" ng-model="customerInfo.orgSources" data-tap-disabled="true" disabled="disabled">
+              	 <option value="selected">请选择</option>
+              	 <option value="1">未知</option>
+	             <option value="1">企业实体</option>
+	             <option value="1">软件开发商</option>
+	             <option value="1">软件代理商</option>
+	             <option value="1">系统集成商</option>
+            </select>
+        </label> 
+        
+        <label class="item item-input">
+          	联系人
+         <input class="input-size" type="text" ng-model="customerInfo.orgLinkmanName" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item item-input">
+          	邮箱
+         <input class="input-size" type="text" ng-model="customerInfo.orgEmail" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item item-input item-select">
+          <div class="input-label" style="width:auto;">标签</div>
+            <select class="aeai-select-item" ng-model="customerInfo.orgLabels" data-tap-disabled="true" disabled="disabled">
+              	 <option value="">请选择</option>
+              	 <option value="1">无人接听</option>
+	             <option value="2">号码信息不符</option>
+	             <option value="3">空号</option>
+	             <option value="4">暂停服务</option> 
+	             <option value="5">暂无需求</option> 
+	             <option value="6">后续联系</option> 
+	             <option value="7">态度恶劣</option>
+            </select>
+        </label>
+        
+        <label class="item item-input">
+          	公司网站
+         <input class="input-size" type="text" ng-model="customerInfo.orgWebsite" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item item-input">
+          	根进人员
+         <input class="input-size" type="text" ng-model="customerInfo.orgSalesmanName" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item item-input item-select">
+          <div class="input-label" style="width:auto;">状态</div>
+            <select class="aeai-select-item" ng-model="customerInfo.orgState" data-tap-disabled="true" disabled="disabled">
+              	 <option value="">请选择</option>
+              	 <option value="0">有效</option>
+              	 <option value="1">无效</option>
+            </select>
+        </label>
+        
+        <label class="item item-input">
+          	创建人
+         <input class="input-size" type="text" ng-model="customerInfo.orgCreaterName" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item item-input">
+          	创建时间
+         <input class="input-size" type="text" ng-model="customerInfo.orgCreateTime" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item item-input">
+          	更新时间
+         <input class="input-size" type="text" ng-model="customerInfo.orgUpdateTime" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item item-input">
+          	联系方式
+         <input class="input-size" type="text" ng-model="customerInfo.orgContactWay" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item item-input">
+          	地址
+         <input class="input-size" type="text" ng-model="customerInfo.orgAddress" align="right" disabled="disabled">
+        </label>
+        
+        <label class="item" style="line-height: 15px;">
+			简要介绍
+	    </label>
+        <label class="item-input content background-color-white">
+        	<div style="padding: 5px 10px;font-size: 14px;">{{customerInfo.orgIntroduction}}</div>
+        </label>
+   </div>   
+   
+    <div class="item item-divider">
+		拜访记录
+	</div>
+	<div class="list">
+		<a class="item item-note" ng-repeat="x in customerInfo.visitList" href="" style="float: none;" ng-click="openMyTasksVisitModal('{{x.id}}','{{x.category}}')">
+			<div class="row">
+		     	<div class="col">
+		     		填写人：{{x.fillName}}
+		     	</div>
+		     	<div class="col">
+		     		拜访效果：{{x.effect}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		拜访类型：{{x.type}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		拜访日期：{{x.date}}
+		     	</div>
+		     </div>
+		     <div class="row">
+		     	<div class="col">
+		     		填写时间：{{x.fillTime}}
+		     	</div>
+		     </div>
+		</a>
+  	</div>

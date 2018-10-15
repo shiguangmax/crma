@@ -1,0 +1,77 @@
+<style>
+#textarea{ 
+    display:block;
+    margin:0 auto;
+    overflow:hidden;
+    width:100%;
+    font-size:14px;
+    height:18px;
+    line-height:24px;
+    padding:2px;
+	}
+#salary-textarea{
+    outline:0 none;
+    border-color:rgba(82,168,236,0.8);
+    box-shadow:inset 0 1px 3px rgba(0,0,0,0.1),0 0 8px rgba(82,168,236,0.6);
+	}
+</style>
+<script type="text/javascript">
+var text=document.getElementById("textarea");
+autoTextarea(text);
+</script>
+<div class="list">
+  <div class="content background-color-white" style="margin-top: 0px;">
+	<div class="row item">
+	   	<div class="col col-33">
+	   		姓名：
+	   	</div>
+	   	<div class="col-66"> 
+	   		<input type="text" ng-model="linkmanDetail.name" readonly>
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		性别：
+	   	</div>
+	   	<div class="col col-66">
+		   	<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="linkmanDetail.sex" data-tap-disabled="true" disabled="disabled">
+		        <option value="F">女</option>
+		        <option value="M">男</option>
+			</select>
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+     	<div class="col col-33">
+     		职位：
+     	</div>
+     	<div class="col-66">
+     		<input type="text" ng-model="linkmanDetail.job" readonly>
+     	</div>
+     </div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		电话：
+	   	</div>
+	   	<div class="col-66"> 
+	   		<input type="text" ng-model="linkmanDetail.phone" readonly>
+	   	</div>&#12288;
+	</div>
+	<div class="row item">
+	   	<div class="col col-33">
+	   		邮箱：
+	   	</div>
+	   	<div class="col-66"> 
+	   		<input type="text" ng-model="linkmanDetail.email" readonly>
+	   	</div>&#12288;
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		公司简介：
+	   	</div>
+	</div>
+	<div class="row">
+	   		<textarea class="placeholder-font-size" rows="5" cols="45" ng-model="linkmanDetail.other" readonly></textarea>
+	</div> 
+  </div>
+  <input type="hidden" ng-model="linkmanDetail.id">
+</div>

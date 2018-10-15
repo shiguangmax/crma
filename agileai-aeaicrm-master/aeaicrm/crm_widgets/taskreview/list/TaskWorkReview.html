@@ -1,0 +1,17 @@
+<div class="list">
+	<div class="item light calm-bg" style="padding: 4px 0px;">
+		<div class="row">
+	     	<div class="col" style="padding-left: 38px;">
+	     		开始日期
+	     	</div>
+	     	<div class="col">
+	     		结束日期
+	     	</div>
+	     </div>
+	</div>
+<div class="content background-color-white">
+	<ion-radio ng-repeat="x in cycleList" ng-click="changeTaskReviewId('{{x.tcId}}','{{x.tcBegin}}','{{x.tcEnd}}')">
+		<span style="padding-left: 17px;">{{x.tcBegin}}</span><span style="padding-left: 58px;">{{x.tcEnd}}</span> 
+	</ion-radio>
+</div>
+</div>

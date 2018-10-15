@@ -1,0 +1,109 @@
+<style>
+#textarea{ 
+    display:block;
+    margin:0 auto;
+    overflow:hidden;
+    width:100%;
+    font-size:14px;
+    height:18px;
+    line-height:24px;
+    padding:2px;
+	}
+#salary-textarea{
+    outline:0 none;
+    border-color:rgba(82,168,236,0.8);
+    box-shadow:inset 0 1px 3px rgba(0,0,0,0.1),0 0 8px rgba(82,168,236,0.6);
+	}
+</style>
+<script type="text/javascript">
+var text=document.getElementById("textarea");
+autoTextarea(text);
+</script>
+<div class="content background-color-white">
+	<h3>bar-light</h3>
+    <div class="bar bar-header bar-light">
+      <h1 class="title">基本信息</h1>
+ 	</div>
+	<div class="row">
+     	<div class="col col-33">
+     		客户名称：
+     	</div>
+     	<div class="col col-66">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+			   <input type="text" placeholder="请输入客户名称..." ng-model="info.name">
+			</label>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33">
+     		行&#12288;&#12288;业：
+     	</div>
+     	<div class="col-70">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+ 		     	<input type="text" placeholder="点击选择行业" ng-model="info.industryName" ng-click="openModal('SelectIndustry')">
+     		</label>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33">
+     		省&#12288;&#12288;份：
+     	</div>
+     	<div class="col-70">
+     		<input type="text" style="margin-left:17px;" placeholder="点击选择省份" ng-model="info.provinceName" ng-click="openModal('SelectProvince')">
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33">
+     		级&#12288;&#12288;别：
+     	</div>
+     	<div class="col col-70 item-select">
+     		<select data-tap-disabled="true" style="right: 80px;padding: 0 0 0 0;width:160px;" ng-model="info.level">
+	             <option value="">请选择</option>
+	             <option value="KEY">重点</option>
+	             <option value="NON_PRIORITY">非优先</option>
+	             <option value="ORDINARY">普通</option>
+	       </select>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33">
+     		进展状态：
+     	</div>
+     	<div class="col col-70 item-select">
+     		<select data-tap-disabled="true" style="right: 80px;padding: 0 0 0 0;width:160px;" ng-model="info.progressState">
+	             <option value="">请选择</option>
+	             <option value="BUSINESS_NEGOTIATION">商务洽谈</option>
+	             <option value="DETERMINED_INTENTION">确定意向</option>
+	             <option value="PRELIMINARY">初步进展</option>
+	             <option value="SIGNING_DEAL">签约成交</option>
+	             <option value="STAGNANT_LOSS">停滞流失</option>
+	       </select>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33">
+     		公司地址：
+     	</div>
+     	<div class="col col-66">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+			   <input type="text" placeholder="请输入公司地址..." ng-model="info.address">
+			</label>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33">
+     		公司网站：
+     	</div>
+     	<div class="col col-66">
+     		<label class="item item-input" style="height: 26px;border:0px;">
+			   <input type="text" placeholder="请输入公司网站..." ng-model="info.web">
+			</label>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33">
+     		公司介绍：
+     	</div>
+     </div>
+	 <textarea id="textarea" id="salary-textarea" placeholder="输入描述内容..." ng-model="info.introduce"></textarea>
+</div>

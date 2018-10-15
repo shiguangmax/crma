@@ -1,0 +1,12 @@
+<div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="搜索" ng-model="AssignSearchWord">
+    </label>
+    <button class="button button-small button-{{btnColorCSS}} submit-button" ng-click="searchSaleName()">搜索</button>
+</div>
+<div class="content background-color-white">
+	<ion-radio ng-repeat="x in saleList" ng-model="x.userId" ng-click="changeUserId('{{x.userId}}')">
+		{{x.userName}}
+	</ion-radio>
+</div>

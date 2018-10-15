@@ -1,0 +1,67 @@
+<div class="content" style="background-color: #fff;">
+   <div class="list">
+  	<div class="content background-color-white">
+		<div class="row item">
+	     	<div class="col col-33">
+	     		商机名称：
+	     	</div>
+	     	<div class="col col-66">
+				<label class="item item-input" style="height: 26px;border:0px;">
+				   <input type="text" ng-model="oppInfo.name" style="border:0px;">
+				</label>
+	     	</div>
+     	</div>
+     	<div class="row item">
+	     	<div class="col col-33">
+	     		关注产品：
+	     	</div>
+	     	<div class="col-66">
+				<input class="placeholder-font-size ng-valid ng-touched ng-dirty ng-valid-parse" type="text" placeholder="{{oppInfo.concernProduct}}" ng-model="oppInfo.productNames" ng-click="openModal('SelectProduct')">
+	     	</div>
+     	</div>
+     	<div class="row item">
+	     	<div class="col col-33">
+	     		预期投资：
+	     	</div>
+	     	<div class="col col-66">
+	     		<label class="item item-input" style="height: 26px;border:0px;">
+				   <input type="text" ng-model="oppInfo.expectInvest" style="border:0px;">
+				</label>
+	     	</div>
+    	</div>
+     	<div class="row item">
+	     	<div class="col col-33">
+	     		级&#12288;&#12288;别：
+	     	</div>&#12288;
+	     	<div class="col col-66">
+				<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="oppInfo.level" data-tap-disabled="true">
+			        <option value="WEAK">弱</option>
+			        <option value="INTERMEDIATE">中</option>
+			        <option value="STRONG">强</option>
+				</select>
+	     	</div>
+     	</div>
+     	<div class="row item">
+	     	<div class="col col-33">
+	     		状&#12288;&#12288;态：
+	     	</div>&#12288;
+	     	<div class="col col-66">
+				<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="oppInfo.oppState" data-tap-disabled="true" disabled="disabled">
+			        <option value="0">初始化</option>
+			        <option value="1">已提交</option>
+			        <option value="2">已确认</option>
+			        <option value="3">已关闭</option>
+				</select>
+	     	</div>
+     	</div>
+    	<div class="row item">
+	     	<div class="col col-20">
+	     		描述：
+	     	</div>
+	     	<div class="col col-66">
+	     		<textarea class="placeholder-font-size" rows="5" cols="30" ng-model="oppInfo.des"></textarea>
+	     	</div>
+     	</div>
+   </div>
+  </div>
+</div>

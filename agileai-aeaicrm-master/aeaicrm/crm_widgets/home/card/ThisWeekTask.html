@@ -1,0 +1,29 @@
+<div class="card aeai-card">
+	<div class="item aeai-card-header item-icon-right" >
+	  <img src="/map/images/demo/maplogo.png" class="card-title-icon">
+	  <!-- <span class="item-icon-left"><i class="icon ion-document-text positive"></i></span> -->
+	  <span>本周任务</span>
+	  <i class="icon ion-android-more-vertical" ng-click="showActionSheet('${widgetCode}')"></i>
+	</div>
+	<div class="list item home-card-bottom home-card-list-font home-item">
+       <div ng-repeat="x in thisTaskList">
+       	<a ng-click="jumpIntentionFollowup('{{x.taskId}}')" style="color: black;">
+	       	<div class="row">
+		     	<div class="col col-20">
+		     		{{x.taskFollowState}}
+		     	</div>
+		     	<div class="col col-67">
+		     		{{x.custName}}
+		     	</div>
+		     	<div class="col col-20">
+		     		{{x.userName}}
+		     	</div>
+		     </div>
+		 </a>
+       </div>
+       <div ng-if="thisTaskListRecords">无记录</div>
+    </div>
+    <div class="button-bar button-outline button-stable home-card-more">  
+      <a class="button button-light home-card-list-font" ng-click="moreTask()">更多任务</a>
+    </div>
+</div>

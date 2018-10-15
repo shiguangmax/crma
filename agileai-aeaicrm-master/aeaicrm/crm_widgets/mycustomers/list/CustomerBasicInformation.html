@@ -1,0 +1,170 @@
+<style>
+#textarea{ 
+    display:block;
+    margin:0 auto;
+    overflow:hidden;
+    width:100%;
+    font-size:14px;
+    height:18px;
+    line-height:24px;
+    padding:2px;
+	}
+#salary-textarea{
+    outline:0 none;
+    border-color:rgba(82,168,236,0.8);
+    box-shadow:inset 0 1px 3px rgba(0,0,0,0.1),0 0 8px rgba(82,168,236,0.6);
+	}
+</style>
+<script type="text/javascript">
+var text=document.getElementById("textarea");
+autoTextarea(text);
+</script>
+<div style="background-color:#fff;height:100%;">
+<div class="item item-divider" style="text-align:center;margin-top: 4px;background-color:#0099ff;color:#fff">
+		基础信息
+</div>
+<div style="background-color:#fff">
+	<div class="row">
+	   	<div class="col col-33">
+	   		客户名称：
+	   	</div>
+	   	<div class="col col-66">
+	   		<textarea id="textarea" id="salary-textarea" ng-model="listInfo.name"></textarea>
+	   	</div>&#12288;
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		客户状态：
+	   	</div>
+	   	<div class="col col-66" style="color:red;">
+	   		{{listInfo.custState}}
+	   	</div>
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		进度状态：
+	   	</div>
+	   	<div class="col col-66">
+		   	<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="listInfo.progressState" data-tap-disabled="true">
+		        <option value="PRELIMINARY">初步进展</option>
+		        <option value="BUSINESS_NEGOTIATION">商务洽谈</option>
+		        <option value="DETERMINED_INTENTION">确定意向</option>
+		        <option value="SIGNING_DEAL">签约成功</option>
+		        <option value="STAGNANT_LOSS">停滞流失</option>
+			</select>
+	   	</div>
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		级&#12288;&#12288;别：
+	   	</div>
+	   	<div class="col col-66">
+	   		<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="listInfo.level" data-tap-disabled="true">
+		        <option value="KEY">重点</option>
+		        <option value="NON_PRIORITY">非优先</option>
+		        <option value="ORDINARY">普通</option>
+			</select>
+	   	</div>&#12288;
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		行&#12288;&#12288;业：
+	   	</div>
+	   	<div class="col col-66">
+	   		<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="listInfo.industry" data-tap-disabled="true">
+		        <option value="">请选择</option>
+	             <option value="0">计算机/互联网/通信/电子</option>
+	             <option value="1">会计/金融/银行/保险</option>
+	             <option value="2">贸易/消费/制造/营运</option>
+	             <option value="3">制药/医疗</option>
+	             <option value="4">广告/媒体</option>
+	             <option value="5">房地产/建筑</option>
+	             <option value="6">专业服务/教育/培训</option>
+	             <option value="7">服务业</option>
+	             <option value="8">物流/运输</option>
+	             <option value="9">能源/原材料</option>
+	             <option value="10">政府/非赢利机构/其他</option>
+	             <option value="11">餐饮/娱乐</option>
+			</select>
+	   	</div>&#12288;
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		省&#12288;&#12288;份：
+	   	</div>
+	   	<div class="col col-66">
+	   		<select style="border:0px;width: 75%;max-width: 81%;padding-left: 0px;direction: ltr;" ng-model="listInfo.province" data-tap-disabled="true">
+	             <option ng-repeat="x in provinceList" value="{{x.codeId}}">{{x.codeName}}</option>
+			</select>
+	   	</div>&#12288;
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		网&#12288;&#12288;站：
+	   	</div>
+	   	<div class="col col-66">
+	   		<textarea id="textarea" id="salary-textarea" ng-model="listInfo.web"></textarea>
+	   	</div>&#12288;
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		地&#12288;&#12288;址：
+	   	</div>
+	   	<div class="col col-66">
+	   		<textarea id="textarea" id="salary-textarea" ng-model="listInfo.address"></textarea>
+	   	</div>&#12288;
+	</div>
+	<div class="row">
+	   	<div class="col col-33">
+	   		公司简介：
+	   	</div>
+	</div>
+	<div class="row">
+	   		<textarea class="placeholder-font-size" rows="5" cols="45" ng-model="listInfo.introduce"></textarea>
+	</div> 
+</div>
+<div class="item item-divider" style="text-align:center;background-color:#0099ff;margin-top: -32px;color:#fff">
+		联系人列表
+</div>
+<div style="background-color:#fff" class="list">
+<ion-list>
+ <ion-item ng-repeat="x in linkman" 
+           item="x"
+           ng-click="openModal('{{x.id}}','linkmanDetail')"
+           class="item-remove-animate" >
+     <div class="row">
+     	<div class="col col-50">
+     		姓名：{{ x.name }}
+     	</div>
+     	<div class="col col-33">
+     		性别：{{x.sex}}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-50">
+     		职位：{{x.job}}
+     	</div>
+     	<div class="col col-50">
+     		电话：{{x.phone}}
+     	</div>
+     </div>
+		<ion-option-button class="button-energized"
+	                       ng-click="openModal('{{x.id}}','linkmanDetail')">
+	     	 查看
+	    </ion-option-button>
+	    <ion-option-button class="button-calm"
+	                       ng-click="openModal('{{x.id}}','editLinkman')"
+	                       ng-show="listInfo.recordState">
+	     	 编辑
+	    </ion-option-button>
+		<ion-option-button class="button-assertive"
+	                       ng-click="deleteLinkman('{{x.id}}')"
+	                       ng-show="listInfo.recordState">
+	      	删除
+	    </ion-option-button>
+	  </ion-item>
+</ion-list>
+</div>
+</div>
+ <input type="hidden" ng-model="listInfo.id">
+</div>

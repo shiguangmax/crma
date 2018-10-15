@@ -1,0 +1,43 @@
+  <div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="搜索" ng-model="searchWord">
+    </label>
+    <button class="button button-small button-{{btnColorCSS}} submit-button" ng-click="search()">搜索</button>
+  </div>
+  <div ng-show="listInfo.length==0" style="margin-top: 200px;text-align: center;" >无记录</div>
+  <div class="list">
+ 	<a class="item item-note item-icon-right" style="float: none;" ng-repeat="x in listInfo" href="" ng-click="jumpInfoPage('{{x.id}}')">
+     <div class="row">
+     	<div class="col col-75" style="font-weight: bold;">
+     		{{ x.name }}
+     	</div>
+     	<div class="col" style="border-radius: 20px;">
+     		<span ng-show="x.state=='无效'" style="border-radius: 10px;text-align:center;padding: 0px 10px;color: #fff;" class="col-demo" ng-class="{'assertive-bg': x.state=='无效'}">无效</span>
+     		<span ng-show="x.state=='有效'" style="border-radius: 10px;text-align:center;padding: 0px 10px;color: #fff;" class="col-demo" ng-class="{'balanced-bg': x.state=='有效',}">有效</span>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col">
+     		标签：{{ x.labels }}
+     	</div>
+     	<div class="col">
+     		分类：{{ x.classification }}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col">
+     		联系人：{{x.linkmanName}}
+     	</div>
+     	<div class="col">
+     		跟进人员：{{x.orgSalesmanName}}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col">
+     		更新时间：{{ x.updateTime }}
+     	</div>
+     </div>
+     <i class="icon ion-ios-arrow-right"></i>
+    </a>
+   </div>

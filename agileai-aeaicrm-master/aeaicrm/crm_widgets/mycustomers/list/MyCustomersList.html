@@ -1,0 +1,71 @@
+<div class="margin-top: 200px;text-align: center;" style="background-color:#fff">
+  <div style="height: 38px;border-style:none;" class="item tabs tabs-secondary">
+  <lable class="item tab-item item-select my-customers-select-border" style="border:0px">
+      	<select style="right: 50px;padding: 0 0 0 0;" ng-model="level" ng-change="customerList()" data-tap-disabled="true">
+      		<option value="">级别</option> 
+	        <option value="KEY">重点</option>
+	        <option value="ORDINARY">普通</option>
+	        <option value="NON_PRIORITY">非优先</option>
+		</select>
+  </lable>
+ <lable class="item tab-item item-select my-customers-select-border" style="border:0px">
+     	<select style="right: 50px;padding: 0 0 0 0;" ng-model="progressState" ng-change="customerList()" data-tap-disabled="true">
+     		<option value="">状态</option> 
+	        <option value="PRELIMINARY">初步进展</option>
+	        <option value="DETERMINED_INTENTION">确定意向</option>
+	        <option value="BUSINESS_NEGOTIATION">商务洽谈</option>
+	        <option value="SIGNING_DEAL">签约成交</option>
+	        <option value="STAGNANT_LOSS">停滞流失</option>
+		</select>
+ </lable>
+</div>
+<ion-list>
+ <ion-item ng-repeat="x in listInfo" 
+           item="x"
+           ng-click="openModal('{{x.id}}','details')"
+           class="item-remove-animate" >
+  <a>
+     <div class="row">
+     	<div class="col col-80" style="font-weight: bold;color:black;">
+     		{{ x.name }}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-33" style="color:black;">
+     		进度状态：
+     	</div>
+     	<div class="col" style="border-radius:20px;">
+     		<div style="border-radius: 20px;text-align:center;width:60px;color:black;" class="col-demo" ng-class="{'assertive-bg': x.state=='0'}">{{x.progressState}}</div>
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-20" style="color:black;">
+     		级别：
+     	</div>
+     	<div class="col" style="color:black;">
+     		{{ x.level }}
+     	</div>
+     	<div class="col col-20" style="color:black;">
+     		创建人：
+     	</div>&#12288;
+     	<div class="col" style="color:black;">
+     		{{ x.createName }}
+     	</div>
+     </div>
+     <div class="row">
+     	<div class="col col-25" style="color:black;">
+     		拜访人：
+     	</div>
+     	<div class="col" style="color:black;">
+     		{{x.saleNames}}
+     	</div>
+     </div>
+     <input type="hidden" ng-model="listInfo.id">
+    </a>
+	    <ion-option-button class="button-assertive"
+	                       ng-click="deleteCustomer('{{x.id}}')">
+	      	删除
+	    </ion-option-button>
+	  </ion-item>
+</ion-list>
+</div>

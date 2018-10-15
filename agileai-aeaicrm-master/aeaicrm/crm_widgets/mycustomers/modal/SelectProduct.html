@@ -1,0 +1,23 @@
+<ion-modal-view ng-controller="${widgetCode}Ctrl" >
+  <ion-header-bar class="bar bar-header bar-{{userPreferColorCSS}}">
+	 <button ng-click="closeModal()" class="button back-button buttons button-clear header-item">
+		<i class="icon ion-android-arrow-back"></i> 
+     </button>   
+     <h1 class="title">选择产品</h1>
+  	 <button class="button button-{{btnColorCSS}}" ng-click="doSelectProduct();closeModal();">确定</button>
+  </ion-header-bar>
+  <div  style="margin-top:40px;">
+  <label class="item item-checkbox ng-valid" ng-repeat="x in product" ng-model="x.checked" ng-checked="x.checked">
+  	<div class="checkbox checkbox-input-hidden disable-pointer-events checkbox-circle">
+  		<input type="checkbox" ng-model="x.checked" ng-checked="x.checked" class="ng-pristine ng-untouched ng-valid">
+  			<i class="checkbox-icon">
+  			</i>
+  	</div>
+  	<div class="item-content disable-pointer-events">
+			<span class="ng-binding">
+ 					{{x.value}}
+ 			</span>
+   	</div>
+  </label>
+  </div>
+</ion-modal-view>
