@@ -44,7 +44,7 @@ public class ContactController {
 	}
 	 
 	/**
-	 * 分页条件查询交往记录
+	 * 分页条件查询交往记录a
 	 * @param page
 	 * @param rows
 	 * @param s_contact
