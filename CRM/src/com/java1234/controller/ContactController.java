@@ -25,7 +25,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
 /**
- * 交往记录Controller层 你好时光2
+ * 交往记录Controller层 你好
  * @author Administrator
  *
  */
