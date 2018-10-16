@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Base">
+	<sql id="com_where_sql">
+		<if test="rules != null and rules.size > 0">
+			where 
+			<foreach collection="rules" index="key" item="rule" separator=" and "> 
+				<choose>
+					<when test="rule.op == 'eq'">
+						${rule.field} = #{rule.data} 
+					</when>
+					<when test="rule.op == 'ne'">
+						${rule.field} != #{rule.data}
+					</when>
+					<when test="rule.op == 'lt'">
+						${rule.field} &lt; #{rule.data}
+					</when>
+					<when test="rule.op == 'le'">
+						${rule.field} &lt;= #{rule.data}
+					</when>
+					<when test="rule.op == 'gt'">
+						${rule.field} &gt; #{rule.data}
+					</when>
+					<when test="rule.op == 'ge'">
+						${rule.field} &gt;= #{rule.data}
+					</when>
+					<when test="rule.op == 'bw'">
+						${rule.field} like '${rule.data}%'
+					</when>
+					<when test="rule.op == 'bn'">
+						${rule.field} not like '${rule.data}%'
+					</when>
+					<when test="rule.op == 'in'">
+						<if test="rule.inDatas != null and rule.inDatas.size>0">
+							${rule.field} in 
+							
+							<foreach collection="rule.inDatas" index="key" item="inData" open="(" separator="," close=")">
+								#{inData}
+							</foreach>
+						</if>
+					</when>
+					<when test="rule.op == 'ni'">
+						<if test="rule.inDatas != null and rule.inDatas.size>0">
+							${rule.field} not in 
+							
+							<foreach collection="rule.inDatas" index="key" item="inData" open="(" separator="," close=")">
+								#{inData}
+							</foreach>
+						</if>
+					</when>
+					<when test="rule.op == 'ew'">
+						${rule.field} like '%${rule.data}'
+					</when>
+					<when test="rule.op == 'en'">
+						${rule.field} not like '%${rule.data}'
+					</when>
+					<when test="rule.op == 'cn'">
+						${rule.field} like '%${rule.data}%'
+					</when>
+					<when test="rule.op == 'nc'">
+						${rule.field} not like '%${rule.data}%'
+					</when>
+					<otherwise>
+						${rule.field} = #{rule.data} 
+					</otherwise>
+				</choose>
+			</foreach>
+		</if>
+		<if test="searchKeys != null and searchKeys.size > 0 and searchParams != null and searchParams != ''">
+			<choose>
+				<when test="rules != null and rules.size > 0">
+					and
+				</when>
+				<otherwise>
+					where 
+				</otherwise>
+			</choose>
+			<foreach collection="searchKeys" index="key" item="searchKey" open="(" separator=" or " close=")">
+				${searchKey} like '%${searchParams}%'
+			</foreach>
+		</if>
+	</sql>
+	<sql id="com_order_sql">
+		<if test="orders != null and orders.size > 0">
+			order by
+			<foreach collection="orders" index="key" item="order" separator=",">
+				${order.property} ${order.direction}
+			</foreach>
+		</if>
+	</sql>
+	
+	<sql id="com_where_sql_a">
+		<if test="rules != null and rules.size > 0">
+			where 
+			<foreach collection="rules" index="key" item="rule" separator=" and "> 
+				<choose>
+					<when test="rule.op == 'eq'">
+						a.${rule.field} = #{rule.data} 
+					</when>
+					<when test="rule.op == 'ne'">
+						a.${rule.field} != #{rule.data}
+					</when>
+					<when test="rule.op == 'lt'">
+						a.${rule.field} &lt; #{rule.data}
+					</when>
+					<when test="rule.op == 'le'">
+						a.${rule.field} &lt;= #{rule.data}
+					</when>
+					<when test="rule.op == 'gt'">
+						a.${rule.field} &gt; #{rule.data}
+					</when>
+					<when test="rule.op == 'ge'">
+						a.${rule.field} &gt;= #{rule.data}
+					</when>
+					<when test="rule.op == 'bw'">
+						a.${rule.field} like '${rule.data}%'
+					</when>
+					<when test="rule.op == 'bn'">
+						a.${rule.field} not like '${rule.data}%'
+					</when>
+					<when test="rule.op == 'in'">
+						<if test="rule.inDatas != null and rule.inDatas.size>0">
+							a.${rule.field} in 
+							
+							<foreach collection="rule.inDatas" index="key" item="inData" open="(" separator="," close=")">
+								#{inData}
+							</foreach>
+						</if>
+					</when>
+					<when test="rule.op == 'ni'">
+						<if test="rule.inDatas != null and rule.inDatas.size>0">
+							a.${rule.field} not in 
+							
+							<foreach collection="rule.inDatas" index="key" item="inData" open="(" separator="," close=")">
+								#{inData}
+							</foreach>
+						</if>
+					</when>
+					<when test="rule.op == 'ew'">
+						a.${rule.field} like '%${rule.data}'
+					</when>
+					<when test="rule.op == 'en'">
+						a.${rule.field} not like '%${rule.data}'
+					</when>
+					<when test="rule.op == 'cn'">
+						a.${rule.field} like '%${rule.data}%'
+					</when>
+					<when test="rule.op == 'nc'">
+						a.${rule.field} not like '%${rule.data}%'
+					</when>
+					<otherwise>
+						a.${rule.field} = #{rule.data} 
+					</otherwise>
+				</choose>
+			</foreach>
+		</if>
+		<if test="searchKeys != null and searchKeys.size > 0 and searchParams != null and searchParams != ''">
+			<choose>
+				<when test="rules != null and rules.size > 0">
+					and
+				</when>
+				<otherwise>
+					where 
+				</otherwise>
+			</choose>
+			<foreach collection="searchKeys" index="key" item="searchKey" open="(" separator=" or " close=")">
+				a.${searchKey} like '%${searchParams}%'
+			</foreach>
+		</if>
+	</sql>
+</mapper>

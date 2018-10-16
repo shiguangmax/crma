@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.AdminMapper">
+
+	<resultMap id="checkAdmin" type="Admin">
+		<id property="id" column="id" javaType="java.lang.Long"></id>
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+		<result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+		
+		<result property="username" column="username" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="nickname" column="nickname" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="password" column="password" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="salt" column="salt" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="isSuper" column="is_super" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+		<result property="isEnabled" column="is_enabled" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+		<result property="isLocked" column="is_locked" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+		<result property="loginFailureCount" column="login_failure_count" jdbcType="INTEGER" javaType="java.lang.Integer"></result>
+		<result property="lockedDate" column="locked_date" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+		<result property="loginDate" column="login_date" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+		<result property="loginIp" column="login_ip" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="email" column="email" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<resultMap id="listAdmin" type="com.entity.Admin">
+		<id property="id" column="id" javaType="java.lang.Long"></id>
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+		<result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+		
+		<result property="username" column="username" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="nickname" column="nickname" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="isSuper" column="is_super" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+		<result property="isEnabled" column="is_enabled" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+		<result property="isLocked" column="is_locked" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+		<result property="loginFailureCount" column="login_failure_count" jdbcType="INTEGER" javaType="java.lang.Integer"></result>
+		<result property="lockedDate" column="locked_date" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+		<result property="loginDate" column="login_date" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+		<result property="loginIp" column="login_ip" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="email" column="email" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<resultMap id="userMap" type="com.entity.Admin">
+		<id property="id" column="id" javaType="java.lang.Long"></id>
+		
+		<result property="nickname" column="nickname" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="username" column="username" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="isSuper" column="is_super" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+		<result property="isEnabled" column="is_enabled" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+		<result property="isLocked" column="is_locked" jdbcType="BIT" javaType="java.lang.Boolean"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+	    username, nickname, `password`, salt, isSuper, isEnabled, isLocked, loginFailureCount, lockedDate, loginDate, loginIp, email, createTime, modifyTime 
+  	</sql>
+	
+	<insert id="add" parameterType="com.entity.Admin" useGeneratedKeys="true" keyProperty="id">
+	  	INSERT INTO t_admin(<include refid="Base_Column_List" />) 
+  		VALUES (#{username}, #{nickname}, #{password}, #{salt}, #{isSuper}, #{isEnabled}, #{isLocked}, 
+  				#{loginFailureCount}, #{lockedDate}, #{loginDate}, #{loginIp}, #{email}, #{createTime}, #{modifyTime})
+	</insert>
+	
+	<insert id="addUserOfRole" parameterType="com.entity.Admin">
+	  	INSERT INTO t_admin_role(userId, roleId) VALUES (#{userId}, #{roleId})
+	</insert>
+	
+	
+    <update id="update" parameterType="com.entity.Admin">
+        UPDATE t_admin
+        <set>
+            <if test="nickname != null and nickname != ''">
+                nickname = #{nickname},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="salt != null and salt != ''">
+                salt = #{salt},
+            </if>
+            <if test="isSuper != null">
+                isSuper = #{isSuper},
+            </if>
+            <if test="isEnabled != null">
+                isEnabled = #{isEnabled},
+            </if>
+            <if test="isLocked != null">
+                isLocked = #{isLocked},
+            </if>
+            <if test="loginFailureCount != null">
+                loginFailureCount = #{loginFailureCount},
+            </if>
+                lockedDate = #{lockedDate},
+            <if test="loginDate != null">
+                loginDate = #{loginDate},
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                loginIp = #{loginIp},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="modifyTime != null">
+                modifyTime = #{modifyTime},
+            </if>
+        </set>
+        WHERE
+          id = #{id}
+    </update>
+	
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_admin
+        where id = #{id}
+    </delete>
+	
+    <!--  批量删除 -->
+    <delete id="batchDelete" parameterType="java.util.List">
+        DELETE FROM t_admin
+        WHERE id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+	
+    <select id="adminList" parameterType="java.util.Map" resultMap="listAdmin">
+		SELECT * FROM t_admin WHERE 1=1
+		<include refid="admin_where"></include>
+		<choose>
+			<when test="orderCond != null">
+				ORDER BY 
+				<foreach collection="orderCond" index="key" item="item">
+					#{item} #{key}, 
+				</foreach>
+			</when>
+			<otherwise>
+				ORDER BY createTime DESC
+			</otherwise>
+		</choose>
+    </select>
+    
+    <select id="getUserOfRole" parameterType="java.lang.Long" resultMap="com.mapper.RoleMapper.roleMap">
+		SELECT r.id, r.sn, r.name
+		FROM t_admin_role ar LEFT JOIN t_admin a ON ar.userId = a.id LEFT JOIN t_role r ON r.id = ar.roleId
+		WHERE a.id = #{id}
+    </select>
+    
+	<sql id="admin_where">
+		<if test="id != null and id != ''">
+		    and id = #{id}
+		</if>
+		<if test="username != null and username != ''">
+		    and username = #{username}
+		</if>
+		<if test="nickname != null and nickname != ''">
+		    and nickname = #{nickname}
+		</if>
+		<if test="password != null and password != ''">
+		    and password = #{password}
+		</if>
+		<if test="salt != null and salt != ''">
+		    and salt = #{salt}
+		</if>
+		<if test="isSuper != null">
+		    and isSuper = #{isSuper}
+		</if>
+		<if test="isEnabled != null">
+		    and isEnabled = #{isEnabled}
+		</if>
+		<if test="isLocked != null">
+		    and isLocked = #{isLocked}
+		</if>
+		<if test="loginFailureCount != null">
+		    and loginFailureCount = #{loginFailureCount}
+		</if>
+		<if test="lockedDate != null">
+		    and lockedDate = #{lockedDate}
+		</if>
+		<if test="loginDate != null">
+		    and loginDate = #{loginDate}
+		</if>
+		<if test="loginIp != null and loginIp != ''">
+		    and loginIp = #{loginIp}
+		</if>
+		<if test="email != null and email != ''">
+		    and email = #{email}
+		</if>
+		<if test="modifyTime != null">
+		    and modifyTime = #{modifyTime}
+		</if>
+		<if test="searchParams !=null and searchParams !=''">
+			AND (r.username=#{searchParams} OR r.nickname=#{searchParams} OR r.email=#{searchParams})
+		</if>
+	</sql>
+	
+	<select id="usernameExist" parameterType="java.lang.String" resultMap="checkAdmin">
+		SELECT * FROM t_admin WHERE username=#{username} LIMIT 1
+	</select>
+	
+	<select id="loadByUsername" parameterType="java.lang.String" resultType="com.entity.Admin">
+		SELECT * FROM t_admin WHERE username = #{username}
+	</select>
+	
+    <select id="loadById" parameterType="java.lang.Long" resultMap="checkAdmin">
+        SELECT * FROM t_admin WHERE id = #{id}
+    </select>
+    
+    <select id="listByRole" parameterType="java.lang.Long" resultMap="listAdmin">
+    	SELECT * FROM t_admin ta
+    	LEFT JOIN t_admin_role tar on tar.userId = ta.id
+    	LEFT JOIN t_role tr on tr.id = tar.roleId
+    	WHERE tr.id = #{id}
+    </select>
+    
+    <select id="listAuthoritysByAdmin" parameterType="java.lang.Long" resultType="com.entity.Authority">
+    	SELECT * FROM t_auth ta
+    	LEFT JOIN t_role_auth tra on tra.auth_id = ta.id
+    	LEFT JOIN t_admin_role tar on tar.roleId = tra.roleId
+    	WHERE tar.user_id = #{id}
+    </select>
+    
+    <select id="listAuthorityCodesByAdmin" parameterType="java.lang.Long" resultType="java.lang.String">
+    	SELECT ta.codeName FROM t_auth ta
+    	LEFT JOIN t_role_auth tra on tra.authId = ta.id
+    	LEFT JOIN t_admin_role tar on tar.roleId = tra.roleId
+    	WHERE tar.userId = #{id} AND ta.isEnabled = 1
+    </select>
+    
+    <select id="listRolesByAdmin" parameterType="java.lang.Long" resultType="com.entity.Role">
+    	SELECT tr.id, tr.name, tr.sn FROM t_role tr
+    	LEFT JOIN t_admin_role tar on tar.roleId = tr.id
+    	LEFT JOIN t_admin tu on tu.id = tar.user_id
+    	WHERE tu.id = #{id}
+    </select>
+    
+    <select id="findPage" parameterType="com.page.JqGridPageable" resultMap="userMap">
+		SELECT a.* FROM t_admin a 
+		<include refid="Base.com_where_sql_a"></include>
+		GROUP BY a.id
+		<include refid="Base.com_order_sql"></include>
+	</select>
+	
+	<delete id="delUserOfAuth" parameterType="java.lang.Long">
+        DELETE FROM t_admin_role WHERE userId = #{userId}
+    </delete>
+    
+</mapper>

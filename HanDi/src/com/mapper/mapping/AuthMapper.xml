@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.mapper.AuthMapper">
+
+	<resultMap id="authMap" type="com.entity.Authority">
+		<id property="id" column="id" javaType="java.lang.Long"></id>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="type" column="type" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="codeName" column="codeName" javaType="java.lang.String"></result>
+		<result property="url" column="url" javaType="java.lang.String"></result>
+		<result property="isEnabled" jdbcType="BIT" column="isEnabled" javaType="java.lang.Boolean"></result>
+	</resultMap>
+	
+	<sql id="auth_where">
+		<if test="id != null and id != ''">
+			AND a.id = #{id}
+		</if>
+		<if test="type != null">
+			AND a.type = #{type}
+		</if>
+		<if test="name != null and name != ''">
+			AND a.name = #{name}
+		</if>
+		<if test="codeName != null and codeName != ''">
+			AND a.codeName = #{codeName}
+		</if>
+	</sql>
+	
+    <select id="listAuthority" parameterType="java.util.Map" resultType="com.entity.Authority">
+        SELECT * FROM t_authority
+        <include refid="auth_where"></include>
+        <choose>
+			<when test="orderCond != null">
+				ORDER BY 
+				<foreach collection="orderCond" index="key" item="item">
+					#{item} #{key}, 
+				</foreach>
+			</when>
+			<otherwise>
+				ORDER BY create_time DESC
+			</otherwise>
+		</choose>
+    </select>
+
+    <insert id="add" parameterType="com.entity.Authority" useGeneratedKeys="true" keyProperty="id">
+        insert into t_auth (
+            `type`,
+            `name`,
+            `codeName`,
+            `url`,
+            `isEnabled`,
+            `createTime`,
+            `modifyTime`
+		) 
+        VALUES (#{type},#{name},#{codeName},#{url},#{isEnabled}, #{createTime}, #{modifyTime})
+    </insert>
+
+    <update id="update" parameterType="com.entity.Authority">
+        update t_auth
+        <set>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="codeName != null and codeName != ''">
+                codeName = #{codeName},
+            </if>
+            <if test="isEnabled != null">
+                isEnabled = #{isEnabled},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url},
+            </if>
+            <if test="modifyTime != null">
+            	modifyTime = #{modifyTime}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM t_auth
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="batchDelete" parameterType="java.lang.String">
+        DELETE FROM t_auth
+        WHERE id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    
+    <select id="loadById" parameterType="java.lang.Long" resultType="com.entity.Authority">
+        SELECT * FROM t_auth WHERE id = #{id}
+    </select>
+    
+    <select id="snExist" parameterType="java.lang.String" resultMap="authMap">
+		SELECT a.sn FROM t_auth a WHERE a.sn=#{sn} LIMIT 1
+	</select>
+	
+	<select id="findPage" parameterType="com.page.JqGridPageable" resultMap="authMap">
+		SELECT * FROM t_auth a
+		<include refid="Base.com_where_sql"></include>
+		<include refid="Base.com_order_sql"></include>
+	</select>
+	
+	<select id="getAuthAssocRoleId" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT roleId FROM t_role_auth WHERE authId = #{authId}
+	</select>
+</mapper>

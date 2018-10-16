@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.mapper.RoleMapper">
+
+	<resultMap id="roleMap" type="com.entity.Role">
+		<id property="id" column="id" javaType="java.lang.Long"></id>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="sn" column="sn" javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<resultMap id="roleHadAuthMap" type="com.entity.Authority">
+		<id property="id" column="id" javaType="java.lang.Long"></id>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<select id="findPage" parameterType="com.page.JqGridPageable" resultMap="roleMap">
+		SELECT * FROM t_role r
+		<include refid="Base.com_where_sql"></include>
+		<include refid="Base.com_order_sql"></include>
+	</select>
+	
+	<select id="getRoleInfo" parameterType="java.util.Map" resultMap="roleMap">
+		SELECT * FROM t_role r WHERE 1=1
+		<include refid="role_where"></include>
+	</select>
+	
+	<select id="getRoleList" resultMap="roleMap">
+		SELECT * FROM t_role r WHERE 1=1
+	</select>
+	
+	<select id="loadById" parameterType="java.lang.Long" resultType="com.entity.Role">
+        SELECT * FROM t_role WHERE id = #{id}
+    </select>
+	
+	<sql id="role_where">
+		<if test="id !=null and id !=''">
+			AND r.id=#{id}
+		</if>
+		<if test="name !=null and name !=''">
+			AND r.name=#{name}
+		</if>
+		<if test="sn !=null and sn !=''">
+			AND r.sn=#{sn}
+		</if>
+	</sql>
+	
+	<select id="snExist" parameterType="java.lang.String" resultMap="roleMap">
+		SELECT r.sn FROM t_role r WHERE r.sn=#{sn} LIMIT 1
+	</select>
+	
+	<select id="findPageRoleHadAuth" parameterType="com.page.JqGridPageable" resultMap="roleHadAuthMap">
+		SELECT a.id, a.name 
+		FROM t_role_auth ra LEFT JOIN t_auth a ON ra.authId = a.id LEFT JOIN t_role r ON r.id=ra.roleId
+		<include refid="Base.com_where_sql"></include>
+		<include refid="Base.com_order_sql"></include>
+    </select>
+    
+    <select id="getRoleAssocUserId" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT userId FROM t_admin_role
+		WHERE roleId = #{roleId}
+	</select>
+    
+    <select id="findPageRoleNoHadAuth" parameterType="com.page.JqGridPageable" resultMap="roleHadAuthMap">
+		SELECT id, name FROM t_auth
+		<include refid="Base.com_where_sql"></include>
+		<include refid="Base.com_order_sql"></include>
+    </select>
+	
+	<insert id="add" parameterType="com.entity.Role" useGeneratedKeys="true" keyProperty="id">
+	  	INSERT INTO t_role(name, sn, createTime, modifyTime) VALUES (#{name}, #{sn}, #{createTime}, #{modifyTime})
+	</insert>
+	
+	<insert id="addRoleOfAuth" parameterType="java.util.Map">
+	  	INSERT INTO t_role_auth(roleId, authId) VALUES (#{roleId}, #{authId})
+	</insert>
+	
+	<update id="update" parameterType="com.entity.Role">
+		UPDATE t_role r 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name != null and name !=''">
+				r.name=#{name},
+			</if>
+			<if test="sn != null">
+				r.sn=#{sn},
+			</if>
+			<if test="modifyTime != null">
+				r.modifyTime=#{modifyTime},
+			</if>
+		</trim>
+		WHERE r.id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM t_role WHERE id =#{id}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="int">
+        DELETE FROM t_role
+        WHERE id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    
+    <delete id="delRoleOfAuth" parameterType="java.util.Map">
+        DELETE FROM t_role_auth
+        <where>
+	        <if test="authId != null and authId.length>0">
+		        AND authId IN
+		        <foreach collection="authId" item="id" open="(" close=")" separator=",">
+		            #{id}
+		        </foreach>
+		    </if>
+	        AND roleId = #{roleId}
+        </where>
+    </delete>
+
+</mapper>

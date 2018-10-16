@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HanDi.iml" filepath="$PROJECT_DIR$/HanDi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../springboot_1/springboot_1.iml" filepath="$PROJECT_DIR$/../../springboot_1/springboot_1.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+ <mapper namespace="com.mapper.VipMapper">
+ 	<resultMap type="com.entity.Vip" id="checkVip">
+ 		<id property="id" column="id" javaType="java.lang.Long"></id>
+		<result property="weiXinName" column="weixinName" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="vipUserName" column="vipUserName" jdbcType="VARCHAR" javaType="java.lang.String"></result>		
+		<result property="vipPhone" column="viPhone" jdbcType="BIGINT" javaType="java.lang.Long"></result>
+		<result property="vipKhao" column="vipKhao" jdbcType="BIGINT" javaType="java.lang.Long"></result>
+		<result property="vipDengJiName" column="vipDengJiName" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="vipJiFen" column="vipJiFen" jdbcType="INTEGER" javaType="java.lang.Integer"></result>
+		<result property="vipSex" column="vipSex" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+		<result property="birthday" column="birthday" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+ 	</resultMap>
+ 	
+ 	
+ 	  <select id="VipList" parameterType="java.util.Map" resultMap="checkVip">
+		SELECT * FROM vip WHERE 1=1
+
+      </select>
+      
+      <!--查看vip会员卡信息  -->      
+     <select id="findPage" parameterType="com.page.JqGridPageable" resultMap="checkVip">
+          SELECT a.* FROM vip a 
+          <include refid="Base.com_where_sql_a"></include>
+			GROUP BY a.id
+		<include refid="Base.com_order_sql"></include>
+	</select>
+		<!-- 根据vip会员卡id进行查询 -->
+	<select id="loadById" parameterType="java.lang.Long" resultType="com.entity.Vip">
+        SELECT * FROM vip WHERE id = #{id}
+    </select>
+    
+    <!-- 更新会员卡信息 -->
+    
+     <update id="update" parameterType="com.entity.Vip">
+        UPDATE vip
+        <set>
+            <if test="weiXinName != null and weiXinName != ''">
+                weiXinName = #{weiXinName},
+            </if>
+            <if test="vipUserName != null and vipUserName != ''">
+                vipUserName = #{vipUserName},
+            </if>
+            <if test="vipPhone != null and vipPhone != ''">
+                vipPhone = #{vipPhone},
+            </if>
+            <if test="vipKhao != null">
+                vipKhao = #{vipKhao},
+            </if>
+            <if test="vipDengJiName != null">
+                vipDengJiName = #{vipDengJiName},
+            </if>
+            <if test="vipJiFen != null">
+                vipJiFen = #{vipJiFen},
+            </if>
+            <if test="vipSex != null">
+                vipSex = #{vipSex},
+            </if>
+             
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+        </set>
+        WHERE
+          id = #{id}
+    </update>
+    
+    <sql id="Base_Column_Listt">
+	    weiXinName, vipUserName, vipPhone, vipKhao, vipDengJiName, vipJiFen, vipSex, birthday 
+  	</sql>
+    
+    <!--添加用户列表  -->
+    <insert id="addvip" parameterType="com.entity.Vip" useGeneratedKeys="true" keyProperty="id">
+	  	INSERT INTO vip (<include refid="Base_Column_Listt" />) 
+  		VALUES (#{weiXinName}, #{vipUserName}, #{vipPhone}, #{vipKhao}, #{vipDengJiName}, #{vipJiFen}, #{vipSex}, 
+  				#{birthday})
+	</insert>
+    
+	   <!--  批量删除 -->
+    <delete id="batchDelete" parameterType="java.util.List">
+        DELETE FROM vip
+        WHERE id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+	
+
+ </mapper>
